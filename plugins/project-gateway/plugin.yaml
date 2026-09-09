@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+name: project-gateway
+version: 1.0.0
+description: Seven direct trusted-context project capabilities with lazy environment-backed provider transports.
+entrypoint: __init__.py
+kind: backend
+toolset: project_gateway
+requires_env:
+  - name: GITHUB_APP_ID
+    description: GitHub App ID read only by GitHub-backed actions.
+  - name: GITHUB_APP_INSTALLATION_ID
+    description: Exact GitHub App installation ID read only by repository actions.
+  - name: GITHUB_APP_PRIVATE_KEY_PATH
+    description: Absolute private-key path read securely and lazily.
+  - name: SLACK_BOT_TOKEN
+    description: Slack token read only by bookmark actions.
+  - name: PEIRCE_SLACK_WORKSPACE_ID
+    description: Exact trusted Slack workspace ID.
+  - name: PEIRCE_SOURCE_CHANNEL_ID
+    description: Exact fixed source Slack channel ID.
+  - name: PEIRCE_SOURCE_REPOSITORY_ID
+    description: Exact immutable fixed source repository ID.
+  - name: PEIRCE_ADMIN_CHANNEL_ID
+    description: Exact fixed admin Slack channel ID.
+  - name: PEIRCE_ADMIN_REPOSITORY_ID
+    description: Exact immutable fixed admin repository ID.
+  - name: PEIRCE_PROJECT_WORKSPACE_ROOT
+    description: Absolute project workspace root.
+  - name: PEIRCE_PROJECT_STATE_ROOT
+    description: Absolute project state root.
+  - name: HERMES_PROJECTS_DB
+    description: Absolute project registry database path whose parent is the protected live root.
+provides_tools:
+  - repository_access
+  - project_association
+  - project_workspace
+  - channel_bookmarks
+  - project_git
+  - project_github
+  - risk_report

@@ -1,0 +1,40 @@
+# Local credentials and authentication state
+.env
+*.env
+**/auth.json
+**/credentials*
+**/secret*
+**/*secret*
+**/*token*
+**/*key*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Runtime state and disposable data
+**/sessions/
+**/cache/
+**/caches/
+**/logs/
+**/runtime/
+**/state/
+**/workspace/
+*.db
+*.sqlite
+*.sqlite3
+
+# Hermes skill usage telemetry and lock state
+/skills/.usage.json
+/skills/.usage.json.lock
+/memories/MEMORY.md.lock
+/memories/USER.md.lock
+
+# Editor and operating-system noise
+.venv/
+.pytest_cache/
+**/__pycache__/
+*.py[cod]
+.DS_Store
+.idea/
+.vscode/

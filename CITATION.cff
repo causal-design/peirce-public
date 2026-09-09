@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "Please cite the Peirce release or commit used in your work."
+type: software
+title: "Peirce: an AI research collaborator for Slack"
+authors:
+  - family-names: Zhao
+    given-names: Qingyuan
+repository-code: "https://github.com/causal-design/peirce-public"
+url: "https://github.com/causal-design/peirce-public"
+license: AGPL-3.0-only
+version: 0.1.0
+abstract: >-
+  A sanitized source preview of a Slack-based AI research collaborator built
+  on Hermes, with bounded project tools, behavioral guidance, and source tests.
+  This release is not a turnkey deployment or an attestation of a live service.

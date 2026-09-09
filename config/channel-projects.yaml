@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "fixed_projects": {
+    "source": {
+      "workspace_id_env": "PEIRCE_SLACK_WORKSPACE_ID",
+      "channel_id_env": "PEIRCE_SOURCE_CHANNEL_ID",
+      "repository_id": "101",
+      "owner": "peirce-example",
+      "name": "peirce",
+      "worktree": "/srv/hermes/project-state/workspace/projects/peirce",
+      "gitdir": "/srv/hermes/project-state/gateway/reserved/peirce.git",
+      "url": "https://github.com/peirce-example/peirce.git",
+      "default_branch": "main"
+    },
+    "admin": {
+      "workspace_id_env": "PEIRCE_SLACK_WORKSPACE_ID",
+      "channel_id_env": "PEIRCE_ADMIN_CHANNEL_ID",
+      "repository_id": "202",
+      "owner": "peirce-example",
+      "name": "peirce-admin",
+      "worktree": "/srv/hermes/project-state/workspace/projects/peirce-admin",
+      "gitdir": "/srv/hermes/project-state/gateway/reserved/peirce-admin.git",
+      "url": "https://github.com/peirce-example/peirce-admin.git",
+      "default_branch": "main"
+    }
+  }
+}

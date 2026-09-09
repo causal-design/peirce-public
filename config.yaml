@@ -1,0 +1,205 @@
+# SPDX-License-Identifier: AGPL-3.0-only
+# Non-secret illustrative Peirce profile configuration. Adapt every host,
+# channel, repository, image, and provider choice before deployment; these
+# values are unverified examples and are not live deployment settings.
+# The trusted host gateway provides the tracked GitHub helper; this profile does
+# not enable arbitrary project plugins.
+
+_config_version: 33
+
+model:
+  default: qwen-3.8-27b
+  provider: custom:neuralwatt
+
+model_aliases:
+  qwen:
+    model: qwen-3.8-27b
+    provider: custom:neuralwatt
+  sol:
+    model: gpt-5.6-sol
+    provider: openai-codex
+  luna:
+    model: gpt-5.6-luna
+    provider: openai-codex
+  gemini:
+    model: gemini-3.8-flash
+    provider: gemini
+
+providers:
+  neuralwatt:
+    name: NeuralWatt
+    api: https://api.neuralwatt.com/v1
+    key_env: NEURALWATT_API_KEY
+    transport: chat_completions
+    default_model: qwen-3.8-27b
+    models:
+      qwen-3.8-27b:
+        context_length: 262128
+
+web:
+  backend: exa
+
+terminal:
+  backend: docker
+  cwd: /srv/hermes/project-state/workspace
+  docker_image: "hermes-research:example"
+  timeout: 120
+  lifetime_seconds: 30
+  env_passthrough: []
+  docker_forward_env: []
+  docker_env: {}
+  credential_files: []
+  docker_volumes:
+    - "/srv/hermes/project-state/workspace:/srv/hermes/project-state/workspace:rw"
+  docker_mount_cwd_to_workspace: false
+  docker_network: true
+  docker_extra_args: []
+  container_persistent: false
+  docker_persist_across_processes: false
+  docker_run_as_host_user: false
+
+gateway:
+  strict: true
+  max_inbound_document_bytes: 134217728
+  media_delivery_allow_dirs:
+    - /srv/hermes/project-state/workspace
+  trust_recent_files: false
+
+slack:
+  require_mention: true
+  strict_mention: true
+  disable_dms: true
+
+# Deliberately disabled in this public snapshot; the deployment owner must
+# review and enable the integration for its own Slack workspace.
+platforms:
+  slack:
+    enabled: false
+    extra:
+      reply_in_thread: true
+      allow_bots: none
+
+# A deployment may expose Peirce's native profile memory/skills and the
+# independently registered project gateway. Loading a skill is guidance only;
+# it does not install, reveal, or gate plugin tools. The repository remains the
+# source of truth; deployment controls discovery and must provide its own
+# secure state roots.
+platform_toolsets:
+  slack: [terminal, file, web, session_search, memory, skills, project_gateway, no_mcp]
+
+plugins:
+  enabled:
+    - project-gateway
+
+agent:
+  reasoning_effort: medium
+  reasoning_overrides:
+    qwen-3.8-27b: medium
+    gpt-5.6-sol: high
+    gpt-5.6-luna: xhigh
+  gateway_notify_interval: 0
+  disabled_toolsets: []
+
+streaming:
+  enabled: false
+
+display:
+  busy_input_mode: interrupt
+  busy_ack_enabled: true
+  busy_steer_ack_enabled: true
+  platforms:
+    slack:
+      live_status: verb
+      tool_preview_length: 100
+      tool_progress: "off"
+      tool_progress_grouping: accumulate
+      interim_assistant_messages: true
+      long_running_notifications: "off"
+      cleanup_progress: true
+      streaming: false
+      show_reasoning: false
+      thinking_progress: false
+      busy_ack_detail: true
+
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+  nudge_interval: 0
+
+skills:
+  creation_nudge_interval: 20
+  disabled:
+    - airtable
+    - apple-notes
+    - apple-reminders
+    - architecture-diagram
+    - ascii-art
+    - ascii-video
+    - baoyu-infographic
+    - blogwatcher
+    - claude-code
+    - claude-design
+    - codebase-inspection
+    - codex
+    - comfyui
+    - computer-use
+    - design-md
+    - docx
+    - dogfood
+    - evaluating-llms-harness
+    - excalidraw
+    - findmy
+    - gif-search
+    - github-auth
+    - github-code-review
+    - github-issues
+    - github-pr-workflow
+    - github-repo-management
+    - google-workspace
+    - hermes-agent
+    - hermes-agent-skill-authoring
+    - himalaya
+    - huggingface-hub
+    - imessage
+    - inspecting-hermes-desktop-dom
+    - llama-cpp
+    - llm-wiki
+    - manim-video
+    - maps
+    - nano-pdf
+    - node-inspect-debugger
+    - notion
+    - obsidian
+    - ocr-and-documents
+    - opencode
+    - openhue
+    - p5js
+    - plan
+    - polymarket
+    - popular-web-designs
+    - powerpoint
+    - pretext
+    - python-debugpy
+    - requesting-code-review
+    - research-paper-writing
+    - serving-llms-vllm
+    - simplify-code
+    - sketch
+    - songsee
+    - songwriting-and-ai-music
+    - systematic-debugging
+    - teams-meeting-pipeline
+    - test-driven-development
+    - touchdesigner-mcp
+    - weights-and-biases
+    - xlsx
+    - xurl
+    - youtube-content
+
+curator:
+  enabled: false
+
+# Hermes otherwise rewrites the tracked config after showing this one-time tip.
+onboarding:
+  seen:
+    busy_input_prompt: true
